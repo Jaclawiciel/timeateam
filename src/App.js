@@ -1,20 +1,22 @@
 import React from 'react';
 import './App.css';
-import SearchBar from './components/list/SearchBar.js';
-import GroupLabel from "./components/list/GroupLabel";
-import UserName from "./components/list/UserName";
-import Avatar from "./components/global/Avatar";
 
 import filterIcon from './images/icons/filter.svg';
 import logo from './images/icons/logoWhite.svg';
 import listIcon from './images/icons/list.svg';
 import plusIcon from './images/icons/plus.svg';
 import userIcon from './images/icons/user.svg';
+import ListPage from "./pages/ListPage";
+import AddFormPage from "./pages/AddFormPage";
+import ProfilePage from "./pages/ProfilePage";
 // import moment from "moment";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
+
+        let pages = ["list", "addForm", "profile"];
+
         let colors = {
             orange: "orange",
             turquoise: "turquoise",
@@ -69,6 +71,8 @@ class App extends React.Component {
             colors: colors,
             groups: groups,
             users: users,
+            pages: pages,
+            currentPage: pages[0]
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -92,26 +96,14 @@ class App extends React.Component {
                         <div className="header-element"></div>
                     </header>
                     <main className="main">
-                        <SearchBar/>
-                        <div className="users">
-                            {this.state.users.map((user) =>
-                                <div key={user.symbol} className="user">
-                                    <div className="user-info">
-                                        <Avatar user={user} />
-                                        <div className="user-text">
-                                            <UserName user={user} renderType="fullName"/>
-                                            <GroupLabel group={user.group}/>
-                                        </div>
-                                    </div>
-                                    <div className="user-avail">nieobecny</div>
-                                </div>
-                            )}
-                        </div>
+                        <ListPage users={this.state.users} />
+                        <AddFormPage />
+                        <ProfilePage />
                     </main>
                 </div>
                 <footer className="footer">
                     <nav className="nav">
-                        <div className="nav-element" onClick={this.handleClick}>
+                        <div className="nav-element active" onClick={this.handleClick}>
                             <img className="icon list" src={listIcon} alt="list"/>
                         </div>
                         <div className="nav-element">

@@ -96,7 +96,13 @@ html, body, #root, .global-wrapper {
   padding: 20px 30px;
 }
 
+.footer .nav-element {
+  opacity: .4;
+}
 
+.footer .nav-element.active {
+  opacity: 1;
+}
 
 /* USERS LIST */
 .search-bar {
