@@ -21,10 +21,10 @@ class UserName extends React.Component {
     render() {
         switch (this.renderType) {
             case 'reversed':
-                return this.reversed();
+                return <div className="user-name">{this.reversed()}</div>;
             case 'fullName': // fallback to default
             default:
-                return this.fullName();
+                return <div className="user-name">{this.fullName()}</div>;
         }
     }
 }
